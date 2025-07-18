@@ -1,0 +1,45 @@
+/* Tailwind CSS directives - required for Tailwind to work */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General body styles */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* Root element styling */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Code element styling */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  #root {
+    padding: 10px;
+  }
+}
