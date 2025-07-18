@@ -1,31 +1,20 @@
-FROM python:3.10
+# Use a Python base image
+FROM python:3.10-slim
 
-# Set working directory to /app
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy backend and other necessary folders into /app
-COPY backend/ ./backend/
-COPY ml/ ./ml/
-COPY utils/ ./utils/
-COPY data/ ./data/
+# Copy the requirements file into the container
+COPY requirements.txt /app/requirements.txt
 
-# Copy requirements.txt from root (assumed to be next to docker-compose.yml)
-COPY requirements.txt .
+# Install the necessary dependencies for ML
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Set PYTHONPATH so Python can find your modules easily
-ENV PYTHONPATH=/app
+# Copy the entire contents of the 'ml' folder into the container
+COPY . /app/ml
 
-# Switch working directory to backend where main.py is located
-WORKDIR /app/backend
+# Expose a port if needed (for any ML-based web service or API)
+# EXPOSE <port_number>
 
-# Install Python dependencies from requirements.txt in /app folder
-RUN pip install --no-cache-dir -r ../requirements.txt
-
-# Start the FastAPI app with uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-
-
-
-
-
+# Command to run when the container starts (replace with your app's entry point)
+CMD ["python", "/app/ml/train.py"]

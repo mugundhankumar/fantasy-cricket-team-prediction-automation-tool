@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Project root directory
-ROOT_DIR = Path(__file__).resolve().parent.parent
+# Project root directory - adjusted for new structure
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Database
 DB_FILE = "gl_genie.db"
-DB_PATH = ROOT_DIR / "backend" / DB_FILE  # Store in backend directory for better organization
+DB_PATH = ROOT_DIR / "app" / "database" / DB_FILE
 DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite+aiosqlite:///{DB_PATH}")
 
 # API Keys
@@ -29,7 +29,7 @@ DEBUG = os.getenv("DEBUG", "true").lower() == "true"
 CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
 
 # ML Model Settings
-MODEL_PATH = ROOT_DIR / "ml" / "gl_model.pkl"
+MODEL_PATH = ROOT_DIR / "app" / "ml" / "gl_model.pkl"
 MODEL_VERSION = "1.0.0"
 
 # Cache Settings
